@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Voorraad</title>
+  <meta name="theme-color" content="#1f7a4d">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="top">
+    <h1>Voorraad</h1>
+    <button id="btnRefresh" class="icon-btn" aria-label="Vernieuwen">⟳</button>
+  </header>
+
+  <main>
+    <!-- VOORRAAD -->
+    <section id="view-stock" class="view active">
+      <div id="alerts"></div>
+      <input id="search" type="search" placeholder="Zoek product…" autocomplete="off">
+      <div id="locFilter" class="chips"></div>
+      <div id="stockList" class="list"></div>
+    </section>
+
+    <!-- SCANNEN -->
+    <section id="view-scan" class="view">
+      <div class="scanner">
+        <video id="video" playsinline muted></video>
+        <div class="scan-frame"></div>
+        <div id="scanHint" class="scan-hint">Richt de camera op een barcode</div>
+      </div>
+      <form id="manualForm" class="row">
+        <input id="manualCode" inputmode="numeric" placeholder="Of typ de barcode" autocomplete="off">
+        <button class="btn">Zoek</button>
+      </form>
+      <div id="scanResult"></div>
+    </section>
+
+    <!-- BOODSCHAPPEN -->
+    <section id="view-shop" class="view">
+      <p class="muted small">Producten waarvan de voorraad onder het ingestelde minimum zit.</p>
+      <div id="shopList" class="list"></div>
+    </section>
+  </main>
+
+  <nav class="tabs">
+    <button data-view="stock" class="active"><span>📦</span>Voorraad</button>
+    <button data-view="scan"><span>▦</span>Scannen</button>
+    <button data-view="shop"><span>🛒</span>Boodschappen<b id="shopBadge" hidden></b></button>
+  </nav>
+
+  <dialog id="dlg"><form method="dialog" id="dlgBody"></form></dialog>
+  <div id="toast" hidden></div>
+
+  <script src="/app.js" type="module"></script>
+</body>
+</html>
